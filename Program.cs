@@ -11,8 +11,8 @@
             {
                 //Se inserta datos creados en SQL (Menos el id porque es clave primaria y auto_incremet)
                 //EJ:
-                nombre = "fideos",
-                precio = 1500
+                nombre = "empanadas",
+                precio = 1000
             };
 
             db.Productos.Add(Insertar);
@@ -20,12 +20,12 @@
 
             //Consultar
             var todos = await db.Productos.ToListAsync();
-            
+
 
             //Ejecutar una linea SQL
-            string SQL = "SELECT * for productos where id = 1";
+            string SQL = "SELECT * FROM productos where id = 1";
             var lista = await db.Productos.FromSqlRaw(SQL).ToListAsync();
-            foreach (var d in todos)
+            foreach (var d in lista)
             {
                 Console.WriteLine(d.nombre);
             }
@@ -34,9 +34,9 @@
             int id = 1;
             var DatoBuscado = Insertar;
             DatoBuscado = await db.Productos.FindAsync(id);
-            
+
             // para que no nos tire error por si no existe un dato
-            if(DatoBuscado != null)
+            if (DatoBuscado != null)
             {
                 Console.WriteLine(DatoBuscado.nombre);
             }
@@ -53,7 +53,7 @@
             }
 
             //Borrar datos
-            if(DatoBuscado != null)
+            if (DatoBuscado != null)
             {
                 db.Remove(DatoBuscado);
                 await db.SaveChangesAsync();
