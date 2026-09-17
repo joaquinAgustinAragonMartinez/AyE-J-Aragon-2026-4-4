@@ -35,7 +35,7 @@
             var DatoBuscado = Insertar;
             DatoBuscado = await db.Productos.FindAsync(id);
             
-            // para que no nos ire error por si no existe un dato
+            // para que no nos tire error por si no existe un dato
             if(DatoBuscado != null)
             {
                 Console.WriteLine(DatoBuscado.nombre);
